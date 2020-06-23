@@ -531,6 +531,7 @@ public class StandardService extends LifecycleMBeanBase implements Service {
         super.initInternal();
 
         if (engine != null) {
+            // servlet引擎初始化
             engine.init();
         }
 
@@ -549,6 +550,7 @@ public class StandardService extends LifecycleMBeanBase implements Service {
         synchronized (connectorsLock) {
             for (Connector connector : connectors) {
                 try {
+                    // 连接器组件初始化
                     connector.init();
                 } catch (Exception e) {
                     String message = sm.getString(

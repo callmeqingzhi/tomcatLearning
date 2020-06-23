@@ -470,6 +470,7 @@ public final class Bootstrap {
                 daemon.stop();
             } else if (command.equals("start")) {
                 daemon.setAwait(true);
+                // 启动时非常重要的一步 加载初始化
                 daemon.load(args);
                 daemon.start();
                 if (null == daemon.getServer()) {

@@ -1040,7 +1040,7 @@ public class Connector extends LifecycleMBeanBase  {
 
     @Override
     protected void initInternal() throws LifecycleException {
-
+        // 连接器初始化
         super.initInternal();
 
         // Initialize adapter
@@ -1072,6 +1072,7 @@ public class Connector extends LifecycleMBeanBase  {
         }
 
         try {
+            // 协议连接handler初始化
             protocolHandler.init();
         } catch (Exception e) {
             throw new LifecycleException(

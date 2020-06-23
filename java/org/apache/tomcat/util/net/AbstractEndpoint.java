@@ -1112,7 +1112,7 @@ public abstract class AbstractEndpoint<S> {
     public abstract void unbind() throws Exception;
     public abstract void startInternal() throws Exception;
     public abstract void stopInternal() throws Exception;
-
+    // 绑定端口
     public void init() throws Exception {
         if (bindOnInit) {
             bind();

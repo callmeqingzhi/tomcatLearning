@@ -881,7 +881,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
 
     }
 
-
+    // engine组件的初始化
     @Override
     protected void initInternal() throws LifecycleException {
         BlockingQueue<Runnable> startStopQueue = new LinkedBlockingQueue<>();
