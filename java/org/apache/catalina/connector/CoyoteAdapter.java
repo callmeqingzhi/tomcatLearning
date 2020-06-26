@@ -333,7 +333,7 @@ public class CoyoteAdapter implements Adapter {
 
         try {
             // Parse and set Catalina and configuration specific
-            // request parameters
+            // request parameters 根据当前请求信息找到对应的HOST->Context->Wrapper(servlet)
             postParseSuccess = postParseRequest(req, request, res, response);
             if (postParseSuccess) {
                 //check valves if we support async
@@ -689,7 +689,7 @@ public class CoyoteAdapter implements Adapter {
         }
 
         while (mapRequired) {
-            // This will map the the latest version by default
+            // This will map the the latest version by default 根据请求url，匹配出能够处理当前请求的HOST->context-servlet
             connector.getService().getMapper().map(serverName, decodedURI,
                     version, request.getMappingData());
 

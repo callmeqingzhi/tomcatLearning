@@ -540,7 +540,7 @@ public abstract class AuthenticatorBase extends ValveBase
             if (log.isDebugEnabled()) {
                 log.debug("Not subject to any constraint");
             }
-            getNext().invoke(request, response);
+            getNext().invoke(request, response);// 处理
             return;
         }
 

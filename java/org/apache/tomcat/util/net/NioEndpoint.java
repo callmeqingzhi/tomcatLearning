@@ -816,6 +816,7 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
         @Override
         public void run() {
             // Loop until destroy() is called
+            // 轮询
             while (true) {
 
                 boolean hasEvents = false;
@@ -849,7 +850,7 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
                 }
                 //either we timed out or we woke up, process events first
                 if ( keyCount == 0 ) hasEvents = (hasEvents | events());
-
+                // keyCount大于0，代表有socket就绪需要被处理
                 Iterator<SelectionKey> iterator =
                     keyCount > 0 ? selector.selectedKeys().iterator() : null;
                 // Walk through the collection of ready keys and dispatch
@@ -862,7 +863,9 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
                     if (attachment == null) {
                         iterator.remove();
                     } else {
+                        // 先移除
                         iterator.remove();
+                        // 再出理
                         processKey(sk, attachment);
                     }
                 }//while
@@ -879,6 +882,7 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel> {
                 if ( close ) {
                     cancelledKey(sk);
                 } else if ( sk.isValid() && attachment != null ) {
+                    // 可读或者可写
                     if (sk.isReadable() || sk.isWritable() ) {
                         if ( attachment.getSendfileData() != null ) {
                             processSendfile(sk,attachment, false);

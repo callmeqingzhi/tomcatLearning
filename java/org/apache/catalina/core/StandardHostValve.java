@@ -107,7 +107,7 @@ final class StandardHostValve extends ValveBase {
     public final void invoke(Request request, Response response)
         throws IOException, ServletException {
 
-        // Select the Context to be used for this Request
+        // Select the Context to be used for this Request 获取能够处理当前请求的context
         Context context = request.getContext();
         if (context == null) {
             return;
@@ -133,7 +133,7 @@ final class StandardHostValve extends ValveBase {
             // Ask this Context to process this request. Requests that are
             // already in error must have been routed here to check for
             // application defined error pages so DO NOT forward them to the the
-            // application for processing.
+            // application for processing. 把请求传递给context处理
             try {
                 if (!response.isErrorReportRequired()) {
                     context.getPipeline().getFirst().invoke(request, response);

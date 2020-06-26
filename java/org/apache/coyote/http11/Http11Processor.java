@@ -493,7 +493,7 @@ public class Http11Processor extends AbstractProcessor {
         readComplete = true;
         boolean keptAlive = false;
         SendfileState sendfileState = SendfileState.DONE;
-
+        // ============start，解析、封装原生Request对象以及初步的Response对象，后续传入Adapter适配
         while (!getErrorState().isError() && keepAlive && !isAsync() && upgradeToken == null &&
                 sendfileState == SendfileState.DONE && !endpoint.isPaused()) {
 
@@ -612,7 +612,7 @@ public class Http11Processor extends AbstractProcessor {
             if (getErrorState().isIoAllowed()) {
                 try {
                     rp.setStage(org.apache.coyote.Constants.STAGE_SERVICE);
-                    getAdapter().service(request, response);
+                    getAdapter().service(request, response);// 传递请求给adapter处理
                     // Handle when the response was committed before a serious
                     // error occurred.  Throwing a ServletException should both
                     // set the status to 500 and set the errorException.

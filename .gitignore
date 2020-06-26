@@ -44,3 +44,5 @@ java/org/apache/catalina/startup/catalina.properties
 modules/jdbc-pool/bin
 modules/jdbc-pool/includes
 source/webapps/docs/jdbc-pool.xml
+/target*
+*.class

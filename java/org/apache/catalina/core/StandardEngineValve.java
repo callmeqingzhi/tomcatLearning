@@ -83,7 +83,7 @@ final class StandardEngineValve extends ValveBase {
             request.setAsyncSupported(host.getPipeline().isAsyncSupported());
         }
 
-        // Ask this Host to process this request
+        // Ask this Host to process this request 请求传入匹配到的host，让其去处理
         host.getPipeline().getFirst().invoke(request, response);
 
     }

@@ -722,7 +722,7 @@ public abstract class AbstractProtocol<S> implements ProtocolHandler,
                 // Nothing to do. Socket has been closed.
                 return SocketState.CLOSED;
             }
-
+            // 取出nio socket
             S socket = wrapper.getSocket();
 
             Processor processor = connections.get(socket);
@@ -815,7 +815,7 @@ public abstract class AbstractProtocol<S> implements ProtocolHandler,
 
                 SocketState state = SocketState.CLOSED;
                 do {
-                    state = processor.process(wrapper, status);
+                    state = processor.process(wrapper, status);  // 调用应用层处理器处理
 
                     if (state == SocketState.UPGRADING) {
                         // Get the HTTP upgrade handler
